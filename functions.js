@@ -62,7 +62,8 @@ console.log(person1.getBirthYear());
 console.log(person1);
 //------------------------------------------------------
 
-//Class in ES6 which has the same as 
+//Class in ES6 are syntatic sugar since it does the same thing as before up above
+
 class PersonInES6 {
     constructor(firstName, lastName, dob) {
         this.firstName = firstName;
@@ -82,4 +83,6 @@ class PersonInES6 {
 const per = new PersonInES6('Mel','Yu', '1998-09-17');
 console.log(per)
 console.log(per.getBirthYear());
+
+
 

@@ -4,14 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fetch API Sandbox</title>
 </head>
 <body>
     <header>
         <h1>Js Crash Course</h1>
+        <h2>Fetch</h2>
     </header>
 
-    <script src="functions.js">
+    <button id="getText">Get Text</button>
+    <button id="getUser">Get Users</button>
+
+
+    <div id="output"></div>
+    <div id="userOutput"></div>
+
+    <script>
+        //adding event listener that runs function getText when clicked
+        document.getElementById('getText').addEventListener('click', getText);
+        
+        document.getElementById('getUser').addEventListener('click', getUser);
+
+        function getUser() {
+            fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=200').then((res)=> res.json()).then(data => {
+                console.log(data);
+                let output = "<h2>Users</h2>"
+                pokemon = data.results;
+                pokemon.forEach(element => {
+                    output += `
+                    <ul>
+                        <li>Name: ${element.name}</li>
+                        <a href="${element.url}">${element.url}</a>
+                    </ul>`;
+                });
+            
+            document.getElementById('userOutput').innerHTML = output;
+            })
+            .catch((err)=>{
+                console.log("failed promise/ users")
+            })
+        }
+
+        function getText() {
+            fetch('sample.txt').then(res => res.text()).then(data => {
+                document.getElementById('output').innerHTML = data;
+            }).catch(rej => console.log('fail'))
+        } 
+
+
     </script>
 </body>
 </html>
